@@ -18,7 +18,7 @@ package com;
 				 Connection con = null; 
 				 try
 				 { 
-				 Class.forName("com.mysql.jdbc.Driver"); 
+				 Class.forName("com.mysql.cj.jdbc.Driver"); 
 				 
 				 //Provide the correct details: DBServer/DBName, username, password 
 				 con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3307/buyer? useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", ""); 
@@ -27,7 +27,7 @@ package com;
 				 {e.printStackTrace();} 
 				 return con; 
 				 } 
-				public String insertFeedback(String fedID, String name, String contactNo, String email, String comment, String ratetype) 
+				public String insertFeedback(String name, String contactNo, String email, String comment, String ratetype) 
 				 { 
 				 String output = ""; 
 				 try
@@ -40,8 +40,8 @@ package com;
 				 + " values (?,?,?,?,?,?)"; 
 				 PreparedStatement preparedStmt = con.prepareStatement(query); 
 				 // binding values
-				// preparedStmt.setInt(1, 0); 
-				preparedStmt.setString(1, fedID); 
+				preparedStmt.setInt(1, 0); 
+				//preparedStmt.setString(1, fedID); 
 				 preparedStmt.setString(2, name); 
 				 preparedStmt.setString(3, contactNo); 
 				 preparedStmt.setString(4,  email);

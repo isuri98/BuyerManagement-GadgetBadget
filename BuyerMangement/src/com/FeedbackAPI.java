@@ -19,6 +19,7 @@ import com.Feedback;
 @WebServlet("/FeedbackAPI")
 public class FeedbackAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private Object feedbackObj;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -43,7 +44,7 @@ public class FeedbackAPI extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
-		String output = feedbackObj.insertFeedback(request.getParameter("name"), 
+		String output = ((Feedback) feedbackObj).insertFeedback(request.getParameter("name"), 
 				 request.getParameter("contactNo"), 
 				request.getParameter("email"), 
 				request.getParameter("comment"),
@@ -59,7 +60,7 @@ public class FeedbackAPI extends HttpServlet {
 		
 		
 		Map paras = getParasMap(request); 
-		 String output = feedbackObj.updateFeedback(paras.get("hidfedIDSave").toString(), 
+		 String output = ((Feedback) feedbackObj).updateFeedback(paras.get("hidfedIDSave").toString(), 
 		 paras.get("name").toString(), 
 		 paras.get("contactNo").toString(), 
 		paras.get("email").toString(), 
@@ -103,7 +104,7 @@ public class FeedbackAPI extends HttpServlet {
 		
 		Map paras = getParasMap(request); 
 		 
-		String output = feedbackObj.deleteFeedback(paras.get("fedID").toString()); 
+		String output = ((Feedback) feedbackObj).deleteFeedback(paras.get("fedID").toString()); 
 		response.getWriter().write(output);
 	}
 

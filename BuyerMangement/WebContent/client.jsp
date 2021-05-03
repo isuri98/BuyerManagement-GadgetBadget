@@ -7,13 +7,20 @@
 <meta charset="ISO-8859-1">
 <title>Buyer Details added</title>
 
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<head>
+
+
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
 <script src="Components/jquery-3.2.1.min.js"></script>
 <script src="Components/client.js"></script>
+
+
+
 
 <style>
 
@@ -24,7 +31,7 @@
 body {
      
       /*background:linear-gradient(to bottom, #1c1182, #a442f5);*/
-      background-color:lightblue;
+      background-color:#5DADE2;
         background-size:1500px 1200px;
   background-repeat:no-repeat;
       
@@ -38,7 +45,7 @@ body {
     padding: 15px;
     margin: 0 auto;
     border-radius: 0.3em;
-    background-color:#808080;
+    background-color:lightblue;
     
 }
 
@@ -73,12 +80,62 @@ body {
 </script>	</div>
 </head>
 <body>
+<% 
+if (request.getParameter("id") != null) 
+ { 
+ Client clientObj = new  Client(); 
+ String stsMsg =  clientObj .deleteClient(request.getParameter("id")); 
+ session.setAttribute("statusMsg", stsMsg); 
+ } 
 
+//Save---------------------------------
+if (request.getParameter("id") != null)
+{
+	Client clientObj = new Client();
+ String stsMsg = "";
+//Insert--------------------------
+if (request.getParameter("hidIDSave") == "")
+ {
+ stsMsg =  clientObj.insertClient(request.getParameter("fname"),
+ request.getParameter("lname"),
+ request.getParameter("NIC"),
+ request.getParameter("address"),
+ request.getParameter("contactNumber"),
+ request.getParameter("email"),
+ request.getParameter("username"),
+ request.getParameter("password"));
+ }
+
+
+
+else//Update----------------------
+ {
+ stsMsg = clientObj.updateClient(request.getParameter("hidIDSave"),
+ request.getParameter("fname"),
+ request.getParameter("lname"),
+ request.getParameter("NIC"),
+ request.getParameter("address"),
+ request.getParameter("contactNumber"),
+ request.getParameter("email"),
+ request.getParameter("username"),
+ request.getParameter("password"));
+ }
+ session.setAttribute("statusMsg", stsMsg);
+}
+//Delete-----------------------------
+if (request.getParameter("hidIDDelete") != null)
+{
+Client clientObj = new Client();
+ String stsMsg =
+ clientObj.deleteClient(request.getParameter("hidIDDelete"));
+ session.setAttribute("statusMsg", stsMsg);
+}
+ %>
 
 
 <div class="container">
  
-            <form class="form-horizontal" method="POST" action=".//CustomerInsertServlet"role="form">
+           <form class="form-horizontal" id="formClient"  name="formClient" role="form">
                 <h2>Sign Up for New Account </h2>
                 <div class="form-group">
                     <label for="firstName" class="col-sm-3 control-label">First Name</label>
@@ -96,7 +153,7 @@ body {
                  <div class="form-group">
                     <label for="NIC" class="col-sm-3 control-label">NIC </label>
                     <div class="col-sm-9">
-                        <input type="NIC" id="NIC"   pattern="[0-9]{10}" placeholder="1117891239"  class="form-control" name= "NIC">
+                        <input type="NIC" id="NIC"   class="form-control" name= "NIC">
                     </div>
                 </div>
                 
@@ -110,7 +167,7 @@ body {
                   </div>
                     </div>
         
-         <div class="form-group">
+                  <div class="form-group">
                     <label for="contactNumber" class="col-sm-3 control-label">Contact number </label>
                     <div class="col-sm-9">
                         <input type="contactNumber" id="contactNumber"  pattern="[0-9]{10}" placeholder="1234567890" class="form-control" name="contactNumber">
@@ -144,20 +201,23 @@ body {
                     </div>
                 
                 <div>
-                <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
-                 <button type="Reset" class="btn btn-primary btn-block">Reset</button>
-                  <input type="hidden" id="hidfedIDSave" name="hidfedIDSave" value="">
+               <input id="btnSave" name="btnSave" type= "button" value="Save" class="btn btn-primary">
+                
+                  <input type="hidden" id="hidIDSave" name="hidIDSave" value="">
+                  
+               </div>   
+ 
             </form> <!-- /form -->
-            
-            <div id="alertSuccess" class="alert alert-success"></div>
+          </div>  
+       <div id="alertSuccess" class="alert alert-success"></div>
 <div id="alertError" class="alert alert-danger"></div>
 <br>
-<div id="divClientGrid">
+<div id="divClientsGrid">
  <%
  Client clientObj = new Client(); 
  out.print(clientObj.readClient()); 
  %>
-</div>
+</div>   
         </div> <!-- ./container -->
         
        

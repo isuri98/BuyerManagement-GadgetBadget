@@ -18,7 +18,7 @@ package com;
 			 Connection con = null; 
 			 try
 			 { 
-			 Class.forName("com.mysql.jdbc.Driver"); 
+				 Class.forName("com.mysql.cj.jdbc.Driver"); 
 			 
 			 //Provide the correct details: DBServer/DBName, username, password 
 			 con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3307/buyer? useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", ""); 
@@ -27,7 +27,7 @@ package com;
 			 {e.printStackTrace();} 
 			 return con; 
 			 } 
-			public String insertClient( String id,String fname, String lname, String NIC, String address, String contactNumber,String email, String username, String password) 
+			public String insertClient(String fname, String lname, String NIC, String address, String contactNumber, String email, String username, String password) 
 			 { 
 			 String output = ""; 
 			 try
@@ -40,8 +40,8 @@ package com;
 			 + " values (?, ?, ?, ?, ?,?,?,?,?)"; 
 			 PreparedStatement preparedStmt = con.prepareStatement(query); 
 			 // binding values
-			 //preparedStmt.setInt(1, 0); 
-			preparedStmt.setString(1, id); 
+			preparedStmt.setInt(1, 0); 
+			//preparedStmt.setString(1, id); 
 			 preparedStmt.setString(2, fname); 
 			 preparedStmt.setString(3, lname); 
 			 preparedStmt.setString(4, NIC); 
@@ -99,8 +99,8 @@ package com;
 			 
 			 
 			 // Add into the html table
-			// output += "<tr><td>" + id + "</td>"; 
-			 output += "<td>" + fname + "</td>"; 
+			// output += "<tr><td>" + id + "</td>";
+			 output += "<tr><td><input id='hidIDUpdate' name='hidIDUpdate'type='hidden' value='" + id + "'>"+fname + "</td>"; 
 			 output += "<td>" + lname + "</td>"; 
 			 output += "<td>" + NIC + "</td>"; 
 			 output += "<td>" + address + "</td>"; 
@@ -188,6 +188,6 @@ package com;
 						 return output; 
 						 } 
 						}
-
+	
 
 

@@ -99,7 +99,7 @@ package com;
 				 output += "<td>" + ratetype + "</td>"; 
 				
 				 // buttons
-				 output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>" + "<td><form method='post' action='feedback1.jsp'>  "
+				 output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>" + "<td><form method='post' action='feedback.jsp'>  "
 				 + "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>" + "<input name='fedID' type='hidden' value='" + fedID  + "'>" + "</form></td></tr>";  } 
 				 con.close(); 
 				 // Complete the html table

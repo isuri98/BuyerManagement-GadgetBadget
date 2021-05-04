@@ -12,11 +12,26 @@
 <script src="Components/jquery-3.2.1.min.js"></script>
 <script src="Components/client.js"></script>
 
+<style>
 
+
+* {
+  box-sizing: border-box;
+}
+.container {
+  border-radius: 5px;
+  background:linear-gradient(to bottom, #ffffff 0%, #3399ff 100%);
+  padding: 15px;
+}
+
+
+
+
+
+</style>
 
 </head>
 <body>
-
 <% 
 if (request.getParameter("fedID") != null) 
  { 
@@ -33,7 +48,8 @@ if (request.getParameter("fedID") != null)
 //Insert--------------------------
 if (request.getParameter("hidfedIDSave") == "")
  {
- stsMsg = feedbackObj.insertFeedback(request.getParameter("name"),
+ stsMsg = feedbackObj.insertFeedback(request.getParameter("fedID"),
+ request.getParameter("name"),		 
  request.getParameter("contactNo"),
  request.getParameter("email"),
  request.getParameter("comment"),
@@ -54,7 +70,7 @@ else//Update----------------------
  session.setAttribute("statusMsg", stsMsg);
 }
 //Delete-----------------------------
-if (request.getParameter("hidItemIDDelete") != null)
+if (request.getParameter("hidfedIDDelete") != null)
 {
 Feedback feedbackObj = new Feedback();
  String stsMsg =
@@ -62,17 +78,18 @@ Feedback feedbackObj = new Feedback();
  session.setAttribute("statusMsg", stsMsg);
 }
  %>
+
 <div class="container"><div class="row"><div class="col-6">   
 <h1>Feedback Page</h1>
   <form id="formFeedback" name="formFeedback">
-     Item code: 
- <input id="name" name="name" type="text" class="form-control form-control-sm">
- <br> Item name: 
- <input id="contactNo" name="contactNo" type="text" class="form-control form-control-sm">
- <br> Item price: 
- <input id="email" name="email" type="text" class="form-control form-control-sm">
- <br> Item description: 
- <input id="comment" name="comment" type="text" class="form-control form-control-sm">
+     Name:
+ <input id="name" name="name" type="text" placeholder="Full Name" pattern="[a-zA-Z][a-zA-Z ]{2,}"class="form-control form-control-sm">
+ <br> Contact Number:
+ <input id="contactNo" name="contactNo" type="text"  pattern="[0-9]{10}" placeholder="1234567890" class="form-control form-control-sm">
+ <br> Email :
+ <input id="email" name="email" type="text" placeholder="abc@gmail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}" class="form-control form-control-sm">
+ <br> Comment:
+ <input id="comment" name="comment" type="text" placeholder="write Something" class="form-control form-control-sm">
  <br>
  <br>How do you rate for your overall experience:
    <input type="radio" name="ratetype" value="Excellent">Excellent<br>
@@ -81,7 +98,7 @@ Feedback feedbackObj = new Feedback();
    <input type="radio" name="ratetype" value="disbled">Disabled<br>	
    
  <input id="btnSave" name="btnSave" type="button" value="Save" class="btn btn-primary">
- <input type="hidden" id="hidItemIDSave" name="hidItemIDSave" value="">
+ <input type="hidden" id="hidfedIDSave" name="hidfedIDSave" value="">
 </form>
 <div id="alertSuccess" class="alert alert-success"></div>
 <div id="alertError" class="alert alert-danger"></div>
@@ -91,14 +108,8 @@ Feedback feedbackObj = new Feedback();
  Feedback feedbackObj = new Feedback(); 
  out.print(feedbackObj.readFeedback()); 
  %>
- 
- 
- 
 
-
-   
-
-
+</div> </div> </div>
  
 </div>
 </body>

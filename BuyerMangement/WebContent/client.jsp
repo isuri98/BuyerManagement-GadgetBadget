@@ -15,7 +15,7 @@
 
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+
 <script src="Components/jquery-3.2.1.min.js"></script>
 <script src="Components/client.js"></script>
 
@@ -136,17 +136,17 @@ Client clientObj = new Client();
 <div class="container">
  
            <form class="form-horizontal" id="formClient"  name="formClient" role="form">
-                <h2>Sign Up for New Account </h2>
+                <h2>Add Buyer Details </h2>
                 <div class="form-group">
                     <label for="firstName" class="col-sm-3 control-label">First Name</label>
                     <div class="col-sm-9">
-                        <input type="text" id="firstName" placeholder="First Name" pattern="[a-zA-Z][a-zA-Z ]{2,}"class="form-control" name="fname" autofocus>
+                        <input type="text" id="firstName" placeholder="First Name" pattern="[a-zA-Z][a-zA-Z ]{2,}"class="form-control" name="fname">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="lastName" class="col-sm-3 control-label">Last Name</label>
                     <div class="col-sm-9">
-                        <input type="text" id="lastName" placeholder="Last Name"  pattern="[a-zA-Z][a-zA-Z ]{2,}"class="form-control" name="lname" autofocus>
+                        <input type="text" id="lastName" placeholder="Last Name"  pattern="[a-zA-Z][a-zA-Z ]{2,}"class="form-control" name="lname">
                     </div>
                 </div>
                 
@@ -163,7 +163,7 @@ Client clientObj = new Client();
     
                            <div class="col-sm-9">
                          
-                             <input type =" address" rows="5" placeholder="type your address..."  class="form-control"  name="address" autofocus >
+                             <input type =" address" rows="5" placeholder="type your address..."  class="form-control"  name="address">
                   </div>
                     </div>
         
@@ -215,68 +215,19 @@ Client clientObj = new Client();
 <div id="divClientsGrid">
  <%
  Client clientObj = new Client(); 
- out.print(clientObj.readClient()); 
+ out.print(clientObj.readClients()); 
  %>
 </div>   
+</div>
         </div> <!-- ./container -->
         
        
 
       
-        <script>
+     
         
         
-        $(function(){
-        	$.validator.setDefaults({
-        		highlight: function(element){
-        			$(element)
-        			.closest('.form-group')
-        			.addClass('has-error')
-        		},
-        		unhighlight: function(element){
-        			$(element)
-        			.closest('.form-group')
-        			.removeClass('has-error')
-        		}
-        	});
-        	
-        	$.validate({
-        		rules:
-        		{	
-        			 password: "required",
-        			birthDate: "required",
-        			
-        			},
-        			email: {
-        				required: true,
-        				email: true
-        			}
-        		}
-        			messages:{			
-        				email: {
-        				required: true,
-        				email: true
-        			}
-        		},
-        		     NIC: {
-					required: " Please enter NIC"
-				      },
-        				
-        				phoneNumber: {
-        					required: " Please enter contact no"
-        				},
-        				email: {
-        					required: ' Please enter email',
-        					email: ' Please enter valid email'
-        				},
-        				
-        	password: {
-				required: " Please enter password"
-			},	
-        	});
-        });
-        </script>
-
+       
 
 </body>
 </html>

@@ -5,6 +5,7 @@ package com;
 	import java.sql.Connection;
 
 
+
 	import java.sql.DriverManager;
 	import java.sql.PreparedStatement;
 	import java.sql.ResultSet;
@@ -27,7 +28,7 @@ package com;
 				 {e.printStackTrace();} 
 				 return con; 
 				 } 
-				public String insertFeedback(String name, String contactNo, String email, String comment, String ratetype) 
+				public String insertFeedback(String fedID,String name, String contactNo, String email, String comment, String ratetype) 
 				 { 
 				 String output = ""; 
 				 try
@@ -40,8 +41,8 @@ package com;
 				 + " values (?,?,?,?,?,?)"; 
 				 PreparedStatement preparedStmt = con.prepareStatement(query); 
 				 // binding values
-				preparedStmt.setInt(1, 0); 
-				//preparedStmt.setString(1, fedID); 
+				//preparedStmt.setInt(1, 0); 
+				preparedStmt.setString(1, fedID); 
 				 preparedStmt.setString(2, name); 
 				 preparedStmt.setString(3, contactNo); 
 				 preparedStmt.setString(4,  email);
@@ -99,8 +100,9 @@ package com;
 				 output += "<td>" + ratetype + "</td>"; 
 				
 				 // buttons
-				 output += "<td><input name='btnUpdate' type='button' value='Update'class='btn btn-secondary'></td>" + "<td><form method='post' action='feedback.jsp'>  "
-				 + "<input name='btnRemove' type='submit' value='Remove' class='btn btn-danger'>" + "<input name='fedID' type='hidden' value='" + fedID  + "'>" + "</form></td></tr>";  } 
+				 output += "<td><input name='btnUpdate' type='button' value='Update' " + "class='btnUpdate btn btn-secondary' data-fedID='" + fedID + "'></td>"
+						 + "<td><input name='btnRemove' type='button' value='Remove' " + "class='btnRemove btn btn-danger' data-fedID='" + fedID + "'></td></tr>"; 
+						  } 
 				 con.close(); 
 				 // Complete the html table
 				 output += "</table>"; 
@@ -112,6 +114,9 @@ package com;
 				 } 
 				 return output; 
 				 } 
+				
+				
+				
 				public String updateFeedback(String fedID, String name,String contactNo, String email, String comment, String ratetype)
 				 { 
 				 String output = ""; 
@@ -144,6 +149,9 @@ package com;
 				 } 
 				 return output; 
 				 } 
+				
+				
+				
 				public String deleteFeedback(String fedID) 
 				 { 
 				 String output = ""; 

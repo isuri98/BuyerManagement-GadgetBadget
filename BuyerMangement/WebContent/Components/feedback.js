@@ -2,8 +2,6 @@
  * 
  */
 
-
-
 $(document).on("click", "#btnSave", function(event)
 		{ 
 		// Clear alerts---------------------

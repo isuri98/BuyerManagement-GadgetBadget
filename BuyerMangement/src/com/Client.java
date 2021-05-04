@@ -54,7 +54,7 @@ package com;
 			// execute the statement3
 			 preparedStmt.execute(); 
 			 con.close(); 
-			 String newClients = readClient(); 
+			 String newClients = readClients(); 
 			 output = "{\"status\":\"success\", \"data\": \"" +  newClients + "\"}"; 
 			 } 
 			 catch (Exception e) 
@@ -67,7 +67,7 @@ package com;
 		
 			
 			
-			public String readClient() 
+			public String readClients() 
 			 { 
 			 String output = ""; 
 			 try
@@ -111,9 +111,9 @@ package com;
 			
 			 // buttons
 			 output += "<td><input name='btnUpdate' type='button' value='Update' "
-					 + "class='btnUpdate btn btn-secondary' data-clientid='" + id + "'></td>"
+					 + "class='btnUpdate btn btn-secondary' data-id='" + id + "'></td>"
 					 + "<td><input name='btnRemove' type='button' value='Remove' "
-					 + "class='btnRemove btn btn-danger' data-clientid='" + id + "'></td></tr>"; 
+					 + "class='btnRemove btn btn-danger' data-id='" + id + "'></td></tr>"; 
 					  } 
 			 // Complete the html table
 			 output += "</table>"; 
@@ -151,7 +151,7 @@ package com;
 			 // execute the statement
 			 preparedStmt.execute(); 
 			 con.close(); 
-			 String newClients = readClient(); 
+			 String newClients = readClients(); 
 			 output = "{\"status\":\"success\", \"data\": \"" +  newClients + "\"}"; 
 			 } 
 			 catch (Exception e) 
@@ -177,7 +177,7 @@ package com;
 			 // execute the statement
 			 preparedStmt.execute(); 
 			 con.close(); 
-			 String newClients = readClient(); 
+			 String newClients = readClients(); 
 			 output = "{\"status\":\"success\", \"data\": \"" +  newClients + "\"}"; 
 			 } 
 			 catch (Exception e) 

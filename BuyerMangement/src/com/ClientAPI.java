@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ClientAPI")
 public class ClientAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Object clientObj;
+	private Client clientObj;
 	
        
     /**
@@ -44,7 +44,7 @@ public class ClientAPI extends HttpServlet {
 		doGet(request, response);
 		
 		
-		String output = ((Client) clientObj).insertClient(request.getParameter("fname"), 
+		String output = clientObj.insertClient(request.getParameter("fname"), 
 				 request.getParameter("lname"), 
 				request.getParameter("NIC"), 
 				request.getParameter("address"), 
@@ -64,7 +64,7 @@ public class ClientAPI extends HttpServlet {
 		
 		
 		Map paras = getParasMap(request); 
-		 String output =((Client) clientObj).updateClient(paras.get("hidIDSave").toString(), 
+		 String output =clientObj.updateClient(paras.get("hidIDSave").toString(), 
 		 paras.get("fname").toString(), 
 		 paras.get("lname").toString(), 
 		paras.get("NIC").toString(), 
@@ -101,6 +101,7 @@ public class ClientAPI extends HttpServlet {
 		return map; 
 	}
 
+
 	/**
 	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
 	 */
@@ -109,7 +110,7 @@ public class ClientAPI extends HttpServlet {
 		
 		Map paras = getParasMap(request); 
 		 
-		String output = ((Client) clientObj).deleteClient(paras.get("id").toString()); 
+		String output = clientObj.deleteClient(paras.get("id").toString()); 
 		response.getWriter().write(output);
 	}
 

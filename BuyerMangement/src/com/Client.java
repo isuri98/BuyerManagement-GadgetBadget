@@ -18,7 +18,7 @@ package com;
 			 Connection con = null; 
 			 try
 			 { 
-				 Class.forName("com.mysql.cj.jdbc.Driver"); 
+				 Class.forName("com.mysql.jdbc.Driver"); 
 			 
 			 //Provide the correct details: DBServer/DBName, username, password 
 			 con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3307/buyer? useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", ""); 
@@ -100,8 +100,8 @@ package com;
 			 
 			 // Add into the html table
 			// output += "<tr><td>" + id + "</td>";
-			 output += "<tr><td><input id='hidIDUpdate' name='hidIDUpdate'type='hidden' value='" + id + "'>"+fname + "</td>"; 
-			 output += "<td>" + lname + "</td>"; 
+			 output += "<tr><td><input id='hidIDUpdate' name='hidIDUpdate'type='hidden' value='" + id + "'>"+fname+ "</td>"; 
+		       output += "<td>" + lname + "</td>"; 
 			 output += "<td>" + NIC + "</td>"; 
 			 output += "<td>" + address + "</td>"; 
 			 output += "<td>" + contactNumber + "</td>"; 

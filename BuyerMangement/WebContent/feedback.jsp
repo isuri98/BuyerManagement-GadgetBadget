@@ -32,52 +32,9 @@
 
 </head>
 <body>
-<% 
-if (request.getParameter("fedID") != null) 
- { 
- Feedback feedbackObj = new Feedback(); 
- String stsMsg =  feedbackObj.deleteFeedback(request.getParameter("fedID")); 
- session.setAttribute("statusMsg", stsMsg); 
- } 
-
-//Save---------------------------------
-if (request.getParameter("fedID") != null)
-{
-	Feedback feedbackObj = new Feedback();
- String stsMsg = "";
-//Insert--------------------------
-if (request.getParameter("hidfedIDSave") == "")
- {
- stsMsg = feedbackObj.insertFeedback(request.getParameter("fedID"),
- request.getParameter("name"),		 
- request.getParameter("contactNo"),
- request.getParameter("email"),
- request.getParameter("comment"),
- request.getParameter("ratetype"));
- }
 
 
 
-else//Update----------------------
- {
- stsMsg = feedbackObj.updateFeedback(request.getParameter("hidfedIDSave"),
- request.getParameter("name"),
- request.getParameter("contactNo"),
- request.getParameter("email"),
- request.getParameter("comment"),
- request.getParameter("ratetype"));
- }
- session.setAttribute("statusMsg", stsMsg);
-}
-//Delete-----------------------------
-if (request.getParameter("hidfedIDDelete") != null)
-{
-Feedback feedbackObj = new Feedback();
- String stsMsg =
- feedbackObj.deleteFeedback(request.getParameter("hidfedIDDelete"));
- session.setAttribute("statusMsg", stsMsg);
-}
- %>
 
 <div class="container"><div class="row"><div class="col-6">   
 <h1>Feedback Page</h1>
@@ -103,7 +60,7 @@ Feedback feedbackObj = new Feedback();
 <div id="alertSuccess" class="alert alert-success"></div>
 <div id="alertError" class="alert alert-danger"></div>
 <br>
-<div id="divItemsGrid">
+<div id="divFeedbacksGrid">
  <%
  Feedback feedbackObj = new Feedback(); 
  out.print(feedbackObj.readFeedback()); 

@@ -28,7 +28,7 @@ package com;
 				 {e.printStackTrace();} 
 				 return con; 
 				 } 
-				public String insertFeedback(String fedID,String name, String contactNo, String email, String comment, String ratetype) 
+				public String insertFeedback(String name, String contactNo, String email, String comment, String ratetype) 
 				 { 
 				 String output = ""; 
 				 try
@@ -41,8 +41,8 @@ package com;
 				 + " values (?,?,?,?,?,?)"; 
 				 PreparedStatement preparedStmt = con.prepareStatement(query); 
 				 // binding values
-				//preparedStmt.setInt(1, 0); 
-				preparedStmt.setString(1, fedID); 
+				preparedStmt.setInt(1, 0); 
+				//preparedStmt.setString(1, fedID); 
 				 preparedStmt.setString(2, name); 
 				 preparedStmt.setString(3, contactNo); 
 				 preparedStmt.setString(4,  email);
@@ -92,8 +92,8 @@ package com;
 				 
 				 
 				 // Add into the html table
-				
-				 output += "<td>" + name + "</td>"; 
+				 output += "<tr><td><input id='hidfedIDUpdate'name='hidfedIDUpdate'  type='hidden' value='" + fedID + "'>" + name + "</td>";
+				 //output += "<td>" + name + "</td>"; 
 				 output += "<td>" + contactNo + "</td>"; 
 				 output += "<td>" + email + "</td>"; 
 				 output += "<td>" + comment + "</td>"; 

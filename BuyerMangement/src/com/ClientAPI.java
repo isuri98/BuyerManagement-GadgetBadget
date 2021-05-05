@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ClientAPI")
 public class ClientAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Client clientObj;
+	Client clientObj = new Client();
 	
        
     /**
@@ -44,14 +44,16 @@ public class ClientAPI extends HttpServlet {
 		doGet(request, response);
 		
 		
-		String output = clientObj.insertClient(request.getParameter("fname"), 
+				String output =  clientObj.insertClient(request.getParameter("fname"),
 				 request.getParameter("lname"), 
 				request.getParameter("NIC"), 
 				request.getParameter("address"), 
 		        request.getParameter("contactNumber"), 
 		        request.getParameter("email"),
 		        request.getParameter("username"), 
-		        request.getParameter("password")); 
+		        request.getParameter("password"));
+		
+		         System.out.println(output);
 		        response.getWriter().write(output);
 	}
 
@@ -78,6 +80,22 @@ public class ClientAPI extends HttpServlet {
 		
 	
 
+	
+
+	/**
+	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
+	 */
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		Map paras = getParasMap(request); 
+		 
+		String output = clientObj.deleteClient(paras.get("id").toString()); 
+		response.getWriter().write(output);
+	}
+	
+	
+	
 	private Map getParasMap(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		
@@ -101,17 +119,5 @@ public class ClientAPI extends HttpServlet {
 		return map; 
 	}
 
-
-	/**
-	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
-	 */
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		Map paras = getParasMap(request); 
-		 
-		String output = clientObj.deleteClient(paras.get("id").toString()); 
-		response.getWriter().write(output);
-	}
 
 }

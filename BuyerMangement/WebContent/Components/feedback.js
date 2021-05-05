@@ -2,6 +2,11 @@
  * 
  */
 
+$(document).ready(function() {
+	$("#alertSuccess").hide();
+	$("#alertSuccess").hide();
+
+});
 $(document).on("click", "#btnSave", function(event)
 		{ 
 		// Clear alerts---------------------
@@ -67,7 +72,7 @@ $("#formFeedback")[0].reset();
 
 $(document).on("click", ".btnUpdate", function(event)
 		{ 
-		$("#hidfedIDSave").val($(this).data("fedID")); 
+		$("#hidfedIDSave").val($(this).closest("tr").find('#hidfedIDUpdate').val());
 		 $("#name").val($(this).closest("tr").find('td:eq(0)').text()); 
 		 $("#contactNo").val($(this).closest("tr").find('td:eq(1)').text()); 
 		 $("#email").val($(this).closest("tr").find('td:eq(2)').text()); 
@@ -121,4 +126,37 @@ if (status == "success")
  $("#alertError").text("Unknown error while deleting.."); 
  $("#alertError").show(); 
  } 
+}
+
+
+
+
+// CLIENTMODEL=========================================================================
+
+function validateForm() {
+	
+	if ($("#name").val().trim() == "") {
+		return "Insert name.";
+	}
+	
+	if ($("#contactNo").val().trim() == "") {
+		return "Insert contactNo.";
+	}
+	if ($("#email").val().trim() == "") {
+		return "Insert email .";
+	}
+	
+
+	
+	if ($("#comment").val().trim() == "") {
+		return "Insert a comment.";
+	}
+	
+	
+	if ($("#ratetype").val().trim() == "") {
+		return "Insert a ratetype.";
+	}
+	
+
+	return true;
 }

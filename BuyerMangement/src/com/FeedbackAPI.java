@@ -19,7 +19,8 @@ import com.Feedback;
 @WebServlet("/FeedbackAPI")
 public class FeedbackAPI extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private Feedback feedbackObj;
+	 Feedback feedbackObj= new Feedback();
+	 
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -44,8 +45,8 @@ public class FeedbackAPI extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 		
-		String output =  feedbackObj.insertFeedback(request.getParameter("fedID"),
-				 request.getParameter("name"),
+		String output =  feedbackObj.insertFeedback(request.getParameter("name"),
+				 //request.getParameter("name"),
 				 request.getParameter("contactNo"), 
 				request.getParameter("email"), 
 				request.getParameter("comment"),

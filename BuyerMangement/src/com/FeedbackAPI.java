@@ -46,11 +46,13 @@ public class FeedbackAPI extends HttpServlet {
 		doGet(request, response);
 		
 		String output =  feedbackObj.insertFeedback(request.getParameter("name"),
-				 //request.getParameter("name"),
-				 request.getParameter("contactNo"), 
+				//request.getParameter("name"), 
+				request.getParameter("contactNo"), 
 				request.getParameter("email"), 
 				request.getParameter("comment"),
 				request.getParameter("ratetype"));
+		
+		           System.out.println(output);
 				response.getWriter().write(output);
 	}
 
@@ -62,7 +64,7 @@ public class FeedbackAPI extends HttpServlet {
 		
 		
 		Map paras = getParasMap(request); 
-		 String output =  feedbackObj.updateFeedback(paras.get("hidfedIDSave").toString(), 
+		 String output =  feedbackObj.updateFeedback(paras.get("hidIDSave").toString(), 
 		 paras.get("name").toString(), 
 		 paras.get("contactNo").toString(), 
 		paras.get("email").toString(), 
@@ -71,8 +73,22 @@ public class FeedbackAPI extends HttpServlet {
 		response.getWriter().write(output); 
 		} 
 		
-	
 
+
+	/**
+	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
+	 */
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		
+		Map paras = getParasMap(request); 
+		 
+		String output =  feedbackObj.deleteFeedback(paras.get("fedID").toString()); 
+		response.getWriter().write(output);
+	}
+	
+	
+	
 	private Map getParasMap(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		
@@ -95,19 +111,5 @@ public class FeedbackAPI extends HttpServlet {
 		 } 
 		return map; 
 		}
-		
-	
-
-	/**
-	 * @see HttpServlet#doDelete(HttpServletRequest, HttpServletResponse)
-	 */
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		Map paras = getParasMap(request); 
-		 
-		String output =  feedbackObj.deleteFeedback(paras.get("fedID").toString()); 
-		response.getWriter().write(output);
-	}
 
 }

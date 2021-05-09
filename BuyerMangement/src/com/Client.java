@@ -4,6 +4,7 @@ package com;
 
 	import java.sql.Connection;
 
+
 	import java.sql.DriverManager;
 	import java.sql.PreparedStatement;
 	import java.sql.ResultSet;
@@ -54,8 +55,8 @@ package com;
 			// execute the statement3
 			 preparedStmt.execute(); 
 			 con.close(); 
-			 String newClients = readClients(); 
-			 output = "{\"status\":\"success\", \"data\": \"" +  newClients + "\"}"; 
+			 String newClient = readClients(); 
+			 output = "{\"status\":\"success\", \"data\": \"" +  newClient + "\"}"; 
 			 } 
 			 catch (Exception e) 
 			 { 
@@ -151,8 +152,8 @@ package com;
 			 // execute the statement
 			 preparedStmt.execute(); 
 			 con.close(); 
-			 String newClients = readClients(); 
-			 output = "{\"status\":\"success\", \"data\": \"" +  newClients + "\"}"; 
+			 String newClient = readClients(); 
+			 output = "{\"status\":\"success\", \"data\": \"" +  newClient + "\"}"; 
 			 } 
 			 catch (Exception e) 
 			 { 
@@ -177,8 +178,8 @@ package com;
 			 // execute the statement
 			 preparedStmt.execute(); 
 			 con.close(); 
-			 String newClients = readClients(); 
-			 output = "{\"status\":\"success\", \"data\": \"" +  newClients + "\"}"; 
+			 String newClient = readClients(); 
+			 output = "{\"status\":\"success\", \"data\": \"" +  newClient + "\"}"; 
 			 } 
 			 catch (Exception e) 
 			 { 

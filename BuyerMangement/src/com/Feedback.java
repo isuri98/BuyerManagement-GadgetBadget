@@ -6,6 +6,7 @@ package com;
 
 
 
+
 	import java.sql.DriverManager;
 	import java.sql.PreparedStatement;
 	import java.sql.ResultSet;
@@ -19,7 +20,7 @@ package com;
 				 Connection con = null; 
 				 try
 				 { 
-				 Class.forName("com.mysql.cj.jdbc.Driver"); 
+				 Class.forName("com.mysql.jdbc.Driver"); 
 				 
 				 //Provide the correct details: DBServer/DBName, username, password 
 				 con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3307/buyer? useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "root", ""); 
@@ -53,16 +54,18 @@ package com;
 				// execute the statement3
 				 preparedStmt.execute(); 
 				 con.close(); 
-				 output = "Inserted successfully"; 
+				 String newFeedback = readFeedbacks(); 
+				 output = "{\"status\":\"success\", \"data\": \"" +newFeedback+ "\"}"; 
 				 } 
 				 catch (Exception e) 
 				 { 
-				 output = "Error while inserting the feedback."; 
-				 System.err.println(e.getMessage()); 
-				 } 
-				 return output; 
-				 } 
-				public String readFeedback() 
+					 output = "{\"status\":\"error\", \"data\":  \"Error while inserting the feedback.\"}"; 
+					 System.err.println(e.getMessage()); 
+					 } 
+					 return output; 
+					 } 
+			
+				public String readFeedbacks() 
 				 { 
 				 String output = ""; 
 				 try
@@ -82,7 +85,7 @@ package com;
 				 // iterate through the rows in the result set
 				 while (rs.next()) 
 				 { 
-					 String fedID = Integer.toString(rs.getInt("fedID"));
+				String fedID = Integer.toString(rs.getInt("fedID"));
 				 String name = rs.getString("name"); 
 				 String contactNo= rs.getString("contactNo");
 				 String email = rs.getString("email"); 
@@ -92,18 +95,20 @@ package com;
 				 
 				 
 				 // Add into the html table
-				 output += "<tr><td><input id='hidfedIDUpdate'name='hidfedIDUpdate'  type='hidden' value='" + fedID + "'>" + name + "</td>";
-				 //output += "<td>" + name + "</td>"; 
+				 output += "<tr><td><input ='hidIDUpdate'name='hidIDUpdate'  type='hidden' value='" + fedID + "'>" +name+ "</td>";
+				// output += "<td>" + name + "</td>"; 
 				 output += "<td>" + contactNo + "</td>"; 
 				 output += "<td>" + email + "</td>"; 
 				 output += "<td>" + comment + "</td>"; 
 				 output += "<td>" + ratetype + "</td>"; 
 				
 				 // buttons
-				 output += "<td><input name='btnUpdate' type='button' value='Update' " + "class='btnUpdate btn btn-secondary' data-fedID='" + fedID + "'></td>"
-						 + "<td><input name='btnRemove' type='button' value='Remove' " + "class='btnRemove btn btn-danger' data-fedID='" + fedID + "'></td></tr>"; 
-						  } 
-				 con.close(); 
+				 output += "<td><input name='btnUpdate' type='button' value='Update' "
+						 + "class='btnUpdate btn btn-secondary' data-fedID='" + fedID + "'></td>"
+						 + "<td><input name='btnRemove' type='button' value='Remove' "
+						 + "class='btnRemove btn btn-danger' data-fedID='" + fedID + "'></td></tr>"; 
+				 }
+				  
 				 // Complete the html table
 				 output += "</table>"; 
 				 } 
@@ -140,15 +145,17 @@ package com;
 				 // execute the statement
 				 preparedStmt.execute(); 
 				 con.close(); 
-				 output = "Updated successfully"; 
+				 
+				 String newFeedback = readFeedbacks(); 
+				 output = "{\"status\":\"success\", \"data\": \"" +  newFeedback + "\"}"; 
 				 } 
 				 catch (Exception e) 
 				 { 
-				 output = "Error while updating the feedback."; 
-				 System.err.println(e.getMessage()); 
-				 } 
-				 return output; 
-				 } 
+					 output = "{\"status\":\"error\", \"data\":  \"Error while updating the feedback.\"}"; 
+					 System.err.println(e.getMessage()); 
+					 } 
+					 return output; 
+					 }  
 				
 				
 				
@@ -167,16 +174,16 @@ package com;
 				 preparedStmt.setInt(1, Integer.parseInt(fedID));  // execute the statement
 				 preparedStmt.execute(); 
 				 con.close(); 
-				 output = "Deleted successfully"; 
+				 String newFeedback = readFeedbacks(); 
+				 output = "{\"status\":\"success\", \"data\": \"" +  newFeedback + "\"}"; 
 				 } 
 				 catch (Exception e) 
 				 { 
-				 output = "Error while deleting the feedback."; 
-				 System.err.println(e.getMessage()); 
-				 } 
-				 return output; 
-				 }
-				 
+					 output = "{\"status\":\"error\", \"data\":  \"Error while deleting the feedback.\"}"; 
+					 System.err.println(e.getMessage()); 
+					 } 
+					 return output; 
+					 }  
 	}
 
 

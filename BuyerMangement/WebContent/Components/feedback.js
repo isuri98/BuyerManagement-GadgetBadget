@@ -10,7 +10,7 @@ $(document).on("click", "#btnSave", function(event)
 		// $("#alertError").text(""); 
 		// $("#alertError").hide(); 
 		// Form validation-------------------
-		var status = validateFeedbackForm(); 
+		//var status = validateFeedbackForm(); 
 		//if (status != true) 
 		// { 
 		// $("#alertError").text(status); 
@@ -90,7 +90,7 @@ $(document).on("click", ".btnRemove", function(event)
 		 dataType : "text", 
 		 complete : function(response, status) 
 		 { 
-		 onItemDeleteComplete(response.responseText, status); 
+		 onFeedbackDeleteComplete(response.responseText, status); 
 		 } 
 		 }); 
 		});

@@ -11,23 +11,10 @@
 <script src="Components/jquery-3.2.1.min.js"></script>
 <script src="Components/feedback.js"></script>
 
-<style>
-
-
-* {
-  box-sizing: border-box;
-}
-.container {
-  border-radius: 5px;
-  background:linear-gradient(to bottom, #ffffff 0%, #3399ff 100%);
-  padding: 15px;
-}
 
 
 
 
-
-</style>
 
 </head>
 <body>

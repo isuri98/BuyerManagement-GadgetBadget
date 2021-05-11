@@ -76,8 +76,7 @@ package com;
 				 // Prepare the html table to be displayed
 				 output = "<table border='1'><tr><th>name</th><th>contactNo</th>" +
 				 "<th>email</th>" + 
-				 "<th>comment</th>" +"<th>ratetype</th>" +
-				 "<th>Update</th><th>Remove</th></tr>"; 
+				 "<th>comment</th>" +"<th>ratetype</th>" + "<th>Update</th><th>Remove</th></tr>"; 
 				 
 				 String query = "select * from feedback"; 
 				 Statement stmt = con.createStatement(); 

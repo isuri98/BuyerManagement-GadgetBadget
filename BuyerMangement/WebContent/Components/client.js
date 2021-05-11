@@ -6,19 +6,19 @@
 //SAVE ============================================
 $(document).on("click", "#btnSave", function(event)
 		{ 
-		// Clear alerts---------------------
+		 //Clear alerts---------------------
 		// $("#alertSuccess").text(""); 
 		// $("#alertSuccess").hide(); 
 		// $("#alertError").text(""); 
-		// $("#alertError").hide(); 
-		// Form validation-------------------
+		//$("#alertError").hide(); 
+		//Form validation-------------------
 		//var status = validateClientForm(); 
 		//if (status != true) 
 		// { 
 		// $("#alertError").text(status); 
 		// $("#alertError").show(); 
-		// return; 
-		// } 
+	//	 return; 
+	//	} 
 		// If valid------------------------
 		var type = ($("#hidIDSave").val() == "") ? "POST" : "PUT"; 
 		 $.ajax( 
@@ -33,6 +33,7 @@ $(document).on("click", "#btnSave", function(event)
 		 } 
 		 }); 
 		});
+
 
 
 function onClientSaveComplete(response, status)
@@ -95,7 +96,7 @@ $(document).on("click", ".btnRemove", function(event)
 		 dataType : "text", 
 		 complete : function(response, status) 
 		 { 
-		 onItemDeleteComplete(response.responseText, status); 
+		 onClientDeleteComplete(response.responseText, status); 
 		 } 
 		 }); 
 		});
@@ -178,4 +179,4 @@ function validateForm() {
 	return true;
 }
 
-
+	
